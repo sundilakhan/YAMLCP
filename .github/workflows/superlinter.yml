@@ -6,12 +6,17 @@ jobs:
   super-lint:
     name: Lint code base
     runs-on: ubuntu-latest
+    env:
+      DEFAULT_BRANCH: main
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MyVariable: "Student name"  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Show MyVariable value
+        run: echo "MyVariable is $MyVariable"
+
       - name: Run Super-Linter
         uses: github/super-linter@v4
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
